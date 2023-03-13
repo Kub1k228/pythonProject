@@ -7,7 +7,13 @@ def randsprite(n,m):
     a = np.empty((n, m))
     for i in range(n):
         for j in range(m):
-            a[i][j] = randint(0, 1)
+            a[i][j] = randint(0,1)
+    for i in range(n):
+        startpos = randint(1,1024)
+        color = randint(startpos-10, startpos+10)
+        for j in range(m):
+            if(a[i][j]==0):
+                a[j][i] = color
     k = randint(-1, 1)
     if k == -1 or k == 0 :
       for i in range (n):
@@ -17,18 +23,19 @@ def randsprite(n,m):
       for i in range (n//2):
           for j in range (m):
               a[n-i-1][j] = a[i][j]
+
     return a
 
 
-n = 5
-m = 7
-arr_draw = np.empty((n,m)) 
+n = 16
+m = 16
+arr_draw = np.empty((n,m))
 arr_draw = randsprite(n,m)
-voida1 = np.full((n,1),1)
+voida1 = np.full((n,1),1024)
 void2 = np.empty((2,m * (m+2)))
 for i in range (m * (m+2)):
-    void2[1][i] = 1
-    void2[0][i] = 1
+    void2[1][i] = 1024
+    void2[0][i] = 1024
 
 for i in range (m):
     a = [1], [1]
@@ -48,5 +55,5 @@ for i in range (n):
     arr_draw = np.concatenate((arr_draw,void2),axis=0)
     arr_draw  = np.concatenate((arr_draw,arr),axis=0)
 
-plt.imshow(arr_draw,cmap = 'gray')
+plt.imshow(arr_draw,cmap = 'terrain_r')
 plt.show()
