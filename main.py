@@ -9,7 +9,6 @@ def randsprite(n,m):
         for j in range(m):
             a[i][j] = randint(0, 1)
     k = randint(-1, 1)
-    print(k)
     if k == -1 or k == 0 :
       for i in range (n):
           for j in range (m//2):
@@ -20,27 +19,30 @@ def randsprite(n,m):
               a[n-i-1][j] = a[i][j]
     return a
 
-arr_draw = np.empty((10,10))
-arr_draw = randsprite(10,10)
-voida1 = [1],[1],[1],[1],[1],[1],[1],[1],[1],[1]
-void2 = np.empty((2,120))
-for i in range (120):
+
+n = 5
+m = 7
+arr_draw = np.empty((n,m)) 
+arr_draw = randsprite(n,m)
+voida1 = np.full((n,1),1)
+void2 = np.empty((2,m * (m+2)))
+for i in range (m * (m+2)):
     void2[1][i] = 1
     void2[0][i] = 1
 
-for i in range (10):
+for i in range (m):
     a = [1], [1]
-    a = randsprite(10, 10)
+    a = randsprite(n, m)
     arr_draw = np.concatenate((arr_draw, voida1), axis=1)
     arr_draw = np.concatenate((arr_draw, a), axis=1)
 
 
-for i in range (10):
+for i in range (n):
     arr = [1],[1]
-    arr = randsprite(10,10)
-    for j in range(10):
+    arr = randsprite(n,m)
+    for j in range(m):
         a = [1], [1]
-        a = randsprite(10, 10)
+        a = randsprite(n, m)
         arr = np.concatenate((arr, voida1), axis=1)
         arr=np.concatenate((arr,a),axis=1)
     arr_draw = np.concatenate((arr_draw,void2),axis=0)
